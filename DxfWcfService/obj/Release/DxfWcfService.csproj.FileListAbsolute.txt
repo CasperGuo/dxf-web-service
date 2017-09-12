@@ -1,0 +1,40 @@
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\DxfWcfService.dll.config
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\DxfWcfService.dll
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\DxfWcfService.pdb
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\Newtonsoft.Json.dll
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.Cad.dll
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.dll
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.GL.dll
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.License.dll
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.Pdf.dll
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\Newtonsoft.Json.xml
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.xml
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.Cad.xml
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.GL.xml
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.Pdf.xml
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\obj\Release\DxfWcfService.csprojResolveAssemblyReference.cache
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\obj\Release\DxfWcfService.dll
+C:\Users\program testing\documents\visual studio 2017\Projects\DxfWcfService\DxfWcfService\obj\Release\DxfWcfService.pdb
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\DxfWcfService.dll.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\DxfWcfService.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\DxfWcfService.pdb
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.Cad.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.GL.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.License.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.Pdf.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.Cad.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.GL.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\WW.Pdf.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\obj\Release\DxfWcfService.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\obj\Release\DxfWcfService.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\obj\Release\DxfWcfService.pdb
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\obj\Release\DxfWcfService.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\AWSSDK.Core.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\AWSSDK.S3.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\AWSSDK.Core.pdb
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\AWSSDK.Core.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\AWSSDK.S3.pdb
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\AWSSDK.S3.xml

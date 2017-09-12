@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_NewBackgroundProfile>False</_NewBackgroundProfile>
+    <_PublishTargetUrl>C:\Users\Administrator\Documents\Visual Studio 2017\Projects\DxfWcfService\DxfWcfService\bin\Release\PublishOutput</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/AWSSDK.Core.dll">
+      <publishTime>08/31/2017 14:49:04</publishTime>
+    </File>
+    <File Include="bin/AWSSDK.Core.pdb">
+      <publishTime>08/31/2017 14:49:04</publishTime>
+    </File>
+    <File Include="bin/AWSSDK.S3.dll">
+      <publishTime>08/24/2017 15:45:30</publishTime>
+    </File>
+    <File Include="bin/AWSSDK.S3.pdb">
+      <publishTime>08/24/2017 15:45:30</publishTime>
+    </File>
+    <File Include="bin/DxfWcfService.dll">
+      <publishTime>09/12/2017 14:09:44</publishTime>
+    </File>
+    <File Include="bin/DxfWcfService.pdb">
+      <publishTime>09/12/2017 14:09:44</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/28/2016 13:22:24</publishTime>
+    </File>
+    <File Include="bin/WW.Cad.dll">
+      <publishTime>08/03/2017 16:48:52</publishTime>
+    </File>
+    <File Include="bin/WW.dll">
+      <publishTime>08/03/2017 16:48:08</publishTime>
+    </File>
+    <File Include="bin/WW.GL.dll">
+      <publishTime>08/03/2017 16:48:16</publishTime>
+    </File>
+    <File Include="bin/WW.License.dll">
+      <publishTime>08/03/2017 15:24:00</publishTime>
+    </File>
+    <File Include="bin/WW.Pdf.dll">
+      <publishTime>08/03/2017 16:48:24</publishTime>
+    </File>
+    <File Include="DxfWcfServiceImpl.svc">
+      <publishTime>07/12/2017 14:36:04</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>08/29/2017 12:30:26</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
