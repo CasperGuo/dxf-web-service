@@ -40,5 +40,12 @@ namespace DxfWcfService
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "/GetJpeg")]
         Stream GetPictures(Stream data);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+           ResponseFormat = WebMessageFormat.Json,
+           BodyStyle = WebMessageBodyStyle.Bare,
+           UriTemplate = "/ExportLayout")]
+        Stream ExportLayout(Stream data);
     }
 }

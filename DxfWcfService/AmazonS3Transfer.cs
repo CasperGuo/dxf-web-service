@@ -10,11 +10,11 @@ namespace DxfWcfService
     {
         public bool sendMyFileToS3(System.IO.Stream localFilePath, string bucketName, string subDirectoryInBucket, string fileNameInS3, string accessKey, string secretKey)
         {
-            accessKey = @"AKIAI7YZWDTYKEIMVQKA";
-            secretKey = @"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";
-            bucketName = @"eshow001";
+            //accessKey = @"AKIAI7YZWDTYKEIMVQKA";
+            //secretKey = @"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";
+            //bucketName = @"eshow001";
 
-            BasicAWSCredentials creds = new BasicAWSCredentials(accessKey, secretKey);
+            BasicAWSCredentials creds = new BasicAWSCredentials(@accessKey, @secretKey);
             IAmazonS3 client = new AmazonS3Client(creds, RegionEndpoint.USEast1);
             //IAmazonS3 client = new AmazonS3Client(RegionEndpoint.USEast1);
             TransferUtility utility = new TransferUtility(client);
@@ -35,11 +35,11 @@ namespace DxfWcfService
         }
         public bool getMyFileFromS3(string bucketName, string fileNameInS3, string localPath, string accessKey, string secretKey)
         {
-            accessKey = @"AKIAJJGNJEP5JIXCBLJA";
-            secretKey = @"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";
-            bucketName = @"eshow001";
+            //accessKey = @"AKIAJJGNJEP5JIXCBLJA";
+            //secretKey = @"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";
+            //bucketName = @"eshow001";
 
-            BasicAWSCredentials creds = new BasicAWSCredentials(accessKey, secretKey);
+            BasicAWSCredentials creds = new BasicAWSCredentials(@accessKey, @secretKey);
             IAmazonS3 client = new AmazonS3Client(creds, RegionEndpoint.USEast1);
             GetObjectRequest request = new GetObjectRequest
             {

@@ -23,11 +23,11 @@ namespace DxfWcfService
     //[ServiceBehavior(AddressFilterMode = AddressFilterMode.Any)]
     public class Booth
     {
-        public string BoothNumber { get; set; }
-        public string SizeX { get; set; }
-        public string SizeY { get; set; }
-        public string InsertPoint { get; set; }
-        public string Shape { get; set; }
+        public string BOOTHNUMBER { get; set; }
+        public string SIZEX { get; set; }
+        public string SIZEY { get; set; }
+        public string INSERTPOINT { get; set; }
+        public string SHAPE { get; set; }
     }
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "DxfWcfServiceImpl" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select DxfWcfServiceImpl.svc or DxfWcfServiceImpl.svc.cs at the Solution Explorer and start debugging.
@@ -41,9 +41,9 @@ namespace DxfWcfService
             string _fileName = _nvc["FileName"];
             string _client_id = _nvc["ClientId"];
             string _show_id = _nvc["ShowId"];
-            string _accessKey = _nvc["AccessKey"];
-            string _secretKey = _nvc["SecretKey"];
-            string _bucketName = _nvc["BucketName"];
+            string _accessKey = @_nvc["AccessKey"];
+            string _secretKey = @_nvc["SecretKey"];
+            string _bucketName = @_nvc["BucketName"];
 
             string s3DirectoryName = _client_id + @"/" + _show_id;
             string _localPath = "h://dxf_uploads//" + _client_id + " // " + _show_id + "//" + _fileName;
@@ -140,6 +140,41 @@ namespace DxfWcfService
             return _point;
         }
 
+        //Untransform point from string of point
+        public static string UntransfromPoint(string point, string origin)
+        {
+            string[] actualPoint = point.Split(',');
+            string[] originPoint = origin.Split(',');
+            var deltaX = ((int)double.Parse(actualPoint[0])*12) + (int)double.Parse(originPoint[0]);
+            var deltaY = ((int)double.Parse(actualPoint[1])*-12) + (int)double.Parse(originPoint[1]);
+            String _point = deltaX.ToString() + "," + deltaY.ToString();
+            return _point;
+        }
+
+        //untransfrom point from windows point
+        public static Point UntransfromPoint(Point point, string origin)
+        {
+            string[] originPoint = origin.Split(',');
+            var deltaX = (point.X * 12) + (int)double.Parse(originPoint[0]);
+            var deltaY = (point.Y * -12) + (int)double.Parse(originPoint[1]);
+            Point _untransformedPoint = new Point(deltaX, deltaY);
+            return _untransformedPoint;
+        }
+
+        //Get Vertices From Vertex, Width and Height
+        public static List<Point> GetVerticesFromVertex(string vertex, int _deltaX, int _deltaY)
+        {
+            string[] _vertex = vertex.Split(',');
+            Point _v1 = new Point(int.Parse(_vertex[0]), int.Parse(_vertex[1]));
+            Point _v2 = new Point(_v1.X + _deltaX, _v1.Y);
+            Point _v3 = new Point(_v1.X + _deltaX, _v1.Y - _deltaY);
+            Point _v4 = new Point(_v1.X , _v1.Y - _deltaY);
+
+            List<Point> _vertexList = new List<Point> {_v1,_v2,_v3,_v4 };
+
+            return _vertexList;
+        }
+
         //Calculate Height
         public static int GetHeight(string s1, string s2)
         {
@@ -185,7 +220,6 @@ namespace DxfWcfService
             string _s = maxX + "," + maxY;
             return _s;
         }
-
 
         //convert List of vertices to point List
         public static List<Point> VerticesToList(List<string> _vertices)
@@ -284,11 +318,11 @@ namespace DxfWcfService
                             _insertPoint = FindMinimum(verticesArray).ToString();
                             _shape = "Box";
                         }
-                        booth.BoothNumber = _boothNumber;
-                        booth.InsertPoint = _insertPoint;
-                        booth.SizeX = _sizeX.ToString();
-                        booth.SizeY = _sizeY.ToString();
-                        booth.Shape = _shape;
+                        booth.BOOTHNUMBER = _boothNumber;
+                        booth.INSERTPOINT = _insertPoint;
+                        booth.SIZEX = _sizeX.ToString();
+                        booth.SIZEY = _sizeY.ToString();
+                        booth.SHAPE = _shape;
                     }
                 }
             }
@@ -373,22 +407,22 @@ namespace DxfWcfService
             }
             Booth _boundaries = new Booth()
             {
-                BoothNumber = "",
-                InsertPoint = _screenOrigin,
-                Shape = "origin",
-                SizeX = "",
-                SizeY = ""
+                BOOTHNUMBER = "",
+                INSERTPOINT = _screenOrigin,
+                SHAPE = "origin",
+                SIZEX = "",
+                SIZEY = ""
             };
             _boothInfo.Add(_boundaries);
             string gridline = FindGridLine(_allVertices.ToArray());
             string[] gridLine = gridline.Split(',');
             Booth _gridLine = new Booth()
             {
-                BoothNumber = "",
-                InsertPoint = "",
-                Shape = "Grid Line",
-                SizeX = gridLine[0],
-                SizeY = gridLine[1]
+                BOOTHNUMBER = "",
+                INSERTPOINT = "",
+                SHAPE = "Grid Line",
+                SIZEX = gridLine[0],
+                SIZEY = gridLine[1]
             };
             _boothInfo.Add(_gridLine);
 
@@ -410,9 +444,9 @@ namespace DxfWcfService
             string _fileName = _nvc["FileName"];
             string _client_id = _nvc["ClientId"];
             string _show_id = _nvc["ShowId"];
-            string _accessKey = _nvc["AccessKey"];
-            string _secretKey = _nvc["SecretKey"];
-            string _bucketName = _nvc["BucketName"];
+            string _accessKey = @_nvc["AccessKey"];
+            string _secretKey = @_nvc["SecretKey"];
+            string _bucketName = @_nvc["BucketName"];
             DxfModel _model = ReadDxf("h://dxf_uploads//" + _client_id + " // " + _show_id + "//" + _fileName);
             foreach (DxfLayer _layer in _model.Layers)
             {
@@ -455,5 +489,151 @@ namespace DxfWcfService
             WebOperationContext.Current.OutgoingResponse.ContentType = "application/json; charset=utf-8";
             return new MemoryStream(Encoding.UTF8.GetBytes(result));
 }
+
+        //Dxf/dwg Export with eshow layers
+        public Stream ExportLayout(Stream input)
+        {
+            string body = new StreamReader(input).ReadToEnd();
+            NameValueCollection _nvc = HttpUtility.ParseQueryString(body);
+            dynamic _data = @_nvc["Data"];
+            string _fileName = _nvc["FileName"];
+            string _client_id = _nvc["ClientId"];
+            string _show_id = _nvc["ShowId"];
+            string _accessKey = @_nvc["AccessKey"];
+            string _secretKey = @_nvc["SecretKey"];
+            string _bucketName = @_nvc["BucketName"];
+
+            DxfModel _model = ReadDxf("h://dxf_uploads//" + _client_id + " // " + _show_id + "//" + _fileName);
+            DxfLayer _numberLayer = new DxfLayer("ESHOW_NUMBERS");
+            DxfLayer _outlineLayer = new DxfLayer("ESHOW_BOOTHS");
+            _model.Layers.Add(_numberLayer);
+            _model.Layers.Add(_outlineLayer);
+
+            //parsing Json Array
+            List<Booth> _boothList = JsonConvert.DeserializeObject<List<Booth>>(_data);
+            string _origin = null;
+            foreach (var _originInfo in _boothList)
+            {
+                if (_originInfo.SHAPE.Equals("ORIGIN", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    _origin = _originInfo.INSERTPOINT;
+                }
+
+            }
+
+            if (_origin != null)
+            { 
+                foreach (var _booth in _boothList)
+                {
+                    if ((!_booth.SHAPE.Equals("ORIGIN", StringComparison.InvariantCultureIgnoreCase)) || (!_booth.SHAPE.Equals("GRIDLINE", StringComparison.InvariantCultureIgnoreCase)))
+                    {
+                        switch (_booth.SHAPE)
+                        {
+                            case "Box":
+                                string insertPoint = _booth.INSERTPOINT;
+                                int deltaX = int.Parse(_booth.SIZEX)*12;
+                                int deltaY = int.Parse(_booth.SIZEY)*12;
+                                string boothNumber = _booth.BOOTHNUMBER;
+                                string vertexOriginal = UntransfromPoint(insertPoint, _origin);
+                                List<Point> VertexList = GetVerticesFromVertex(vertexOriginal, deltaX, deltaY);
+                                //converting Windows points to Cad Points
+                                Point2D[] vertexPoints = new Point2D[4];
+                                for (int i = 0; i < VertexList.Count; i++)
+                                {
+                                    vertexPoints[i].X = VertexList[i].X;
+                                    vertexPoints[i].Y = VertexList[i].Y;
+                                }
+                                //Add Booth to Dxf
+                                DxfPolyline2D booth = new DxfPolyline2D();
+                                booth.Vertices.AddRange(vertexPoints);
+                                booth.Layer = _outlineLayer;
+                                booth.Closed = true;
+                                booth.Color = EntityColor.ByLayer;
+                                _model.Entities.Add(booth);
+
+                                //Add text to DXF
+                                Point textPoint = new Point(VertexList[0].X + 10, VertexList[0].Y - 50);
+                                DxfText boothText = new DxfText(boothNumber, new Point3D(textPoint.X, textPoint.Y, 0d), 10d)
+                                {
+                                    Layer = _numberLayer,
+                                    Color = EntityColor.ByLayer
+                                };
+                                _model.Entities.Add(boothText);
+                                break;
+
+                            case "Polygon":
+                                insertPoint = _booth.INSERTPOINT;
+                                int[] ins = insertPoint.Split(',').Select(n => Convert.ToInt32(n)).ToArray();
+                                List<int> insPoints = ins.OfType<int>().ToList();
+                                insPoints.RemoveAt(insPoints.Count - 1);
+                                insPoints.RemoveAt(insPoints.Count - 1);
+                                List<Point> vertexList = new List<Point>();
+                                Point tempPoint;
+                                //converting to vertices
+                                for (int i = 0; i <= insPoints.Count; i+=2)
+                                {
+                                    tempPoint = new Point(insPoints[i], y: insPoints[i + 1]);
+                                    vertexList.Add(tempPoint);
+                                }
+                                boothNumber = _booth.BOOTHNUMBER;
+                                //untransfroming points
+                                for (int i = 0; i < vertexList.Count; i++)
+                                {
+                                    vertexList[i] = UntransfromPoint(vertexList[i], _origin);
+                                }
+                                //converting Windows points to Cad Points
+                                vertexPoints = new Point2D[vertexList.Count];
+                                for (int i = 0; i < vertexList.Count; i++)
+                                {
+                                    vertexPoints[i].X = vertexList[i].X;
+                                    vertexPoints[i].Y = vertexList[i].Y;
+                                }
+                                booth = new DxfPolyline2D();
+                                booth.Vertices.AddRange(vertexPoints);
+                                booth.Layer = _outlineLayer;
+                                booth.Closed = true;
+                                booth.Color = EntityColor.ByLayer;
+                                _model.Entities.Add(booth);
+
+                                //Add text to DXF
+                                textPoint = new Point(vertexList[0].X + 10, vertexList[0].Y - 50);
+                                boothText = new DxfText(boothNumber, new Point3D(textPoint.X, textPoint.Y, 0d), 10d)
+                                {
+                                    Layer = _numberLayer,
+                                    Color = EntityColor.ByLayer
+                                };
+                                _model.Entities.Add(boothText);
+                                break;
+                        }
+                    }                   
+                }
+            }
+            // write new DWG
+            Stream dwgStream;
+            string outfile = Path.GetFileNameWithoutExtension(Path.GetFullPath(_fileName));
+            string fileNameS3 = outfile + "_export.dwg";
+            string filePath = "h://dxf_uploads//" + _client_id + " // " + _show_id + "//" + fileNameS3;
+            using (dwgStream = new FileStream(@filePath, FileMode.Create, FileAccess.Write))
+            {
+                DwgWriter.Write(dwgStream, _model);
+            }
+            //Upload to s3
+            //string _subDirectory = _client_id + @"/" + _show_id + @"/dxf";
+            //AmazonS3Transfer amazonS3Transfer = new AmazonS3Transfer();
+            //bool uploadStatus = amazonS3Transfer.sendMyFileToS3(dwgStream, _bucketName, _subDirectory, fileNameS3, _accessKey, _secretKey);
+            bool uploadStatus = true;
+            Dictionary<string, string> status = new Dictionary<string, string>();
+            if (uploadStatus == true)
+            {
+                status.Add("status_code", "1");
+            }
+            else
+            {
+                status.Add("status_code", "0");
+            }
+            string result = JsonConvert.SerializeObject(status);
+            WebOperationContext.Current.OutgoingResponse.ContentType = "application/json; charset=utf-8";
+            return new MemoryStream(Encoding.UTF8.GetBytes(result));
+        }
     }
 }
